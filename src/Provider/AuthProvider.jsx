@@ -42,29 +42,28 @@ const AuthProvider = ({children}) => {
 
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
-            // const userEmail = currentUser?.email || user?.email
-            // const loggedUser = {email: userEmail}
+            const userEmail = currentUser?.email || user?.email
+            const loggedUser = {email: userEmail}
             setUser(currentUser)
-            setLoading(false)
-            // if(currentUser){
-            //     axiosPublic.post('/jwt', loggedUser)
-            //     .then(res =>{
-            //         console.log('token res: ', res.data)
-            //         setLoading(false)
-            //     })
-            // }
-            // else{
-            //     axiosPublic.post('/jwt/logOut', loggedUser)
-            //     .then(res =>{
-            //         console.log('token cleared: ', res.data)
-            //         setLoading(false)
-            //     })
-            // }
+            if(currentUser){
+                axiosPublic.post('/jwt', loggedUser, {withCredentials: true})
+                .then(res =>{
+                    console.log('token res: ', res.data)
+                    setLoading(false)
+                })
+            }
+            else{
+                axiosPublic.post('/jwt/logout', loggedUser, {withCredentials: true})
+                .then(res =>{
+                    console.log('token cleared: ', res.data)
+                    setLoading(false)
+                })
+            }
         })
         return () =>{
             return unsubscribe()
         }
-    },[])
+    },[user?.email, axiosPublic])
 
     const authInfo = {
         user, loading, createUser, logIn, googleSignIn, logOut, updateUserProfile,

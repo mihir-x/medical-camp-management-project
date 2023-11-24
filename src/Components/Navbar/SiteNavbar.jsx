@@ -1,8 +1,13 @@
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+
 
 
 const SiteNavbar = () => {
+
+    const {user, logOut} = useAuth()
 
     const navLinks = <>
         <NavLink to='/' className={({isActive}) => isActive? ' font-bold underline text-green-500 ': ''}>Home</NavLink>
@@ -10,6 +15,20 @@ const SiteNavbar = () => {
         <NavLink to='/dashboard' className={({isActive}) => isActive? ' font-bold underline text-green-500 ': ''}>Dashboard</NavLink>
         <NavLink to='/contact-us' className={({isActive}) => isActive? ' font-bold underline text-green-500 ': ''}>Contact Us</NavLink>
     </>
+
+    const handleLogout = () =>{
+        logOut()
+        .then(() =>{
+            Swal.fire("User logged out successfully!")
+        })
+        .catch(err =>{
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+              })
+        })
+    }
 
     return (
         <div className=" shadow-2xl">
@@ -31,7 +50,7 @@ const SiteNavbar = () => {
                             <span className="block truncate text-sm font-medium">name@flowbite.com</span>
                         </Dropdown.Header>
                         <Dropdown.Divider />
-                        <Dropdown.Item>Sign out</Dropdown.Item>
+                        <Dropdown.Item><Button onClick={handleLogout} color="failure">Logout</Button></Dropdown.Item>
                     </Dropdown>
                     <Navbar.Toggle />
                 </div>
