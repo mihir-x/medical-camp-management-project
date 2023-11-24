@@ -1,10 +1,41 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
+
+    const {logIn, loading} = useAuth()
+    const navigate = useNavigate()
+
+    const handleLogin = async(e) =>{
+        e.preventDefault()
+        const form = e.target 
+        const email = form.email.value 
+        const password = form.password.value 
+        try{
+            const result = await logIn(email, password)
+            navigate('/')
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `Welcome back ${result.user.displayName}`,
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
+        catch(err){
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.message
+              })
+        }
+    }
+
     return (
         <div className=" flex justify-center items-center my-5 md:my-10 lg:my-16">
             <Helmet>
@@ -15,7 +46,7 @@ const Login = () => {
                     <h1 className=" text-2xl md:text-4xl font-bold mb-3">Login</h1>
                     <p className=" text-sm md:text-base text-gray-500">Welcome to MediVoyage</p>
                 </div>
-                <form className="flex max-w-md flex-col gap-4">
+                <form onSubmit={handleLogin} className="flex max-w-md flex-col gap-4">
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="email2" value="Your email" />
