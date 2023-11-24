@@ -4,10 +4,12 @@ import Home from "../Pages/Home/Home";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import AvailableCamps from "../Pages/AvailableCamps/AvailableCamps";
-import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import PrivateRoutes from "./PrivateRoutes";
+import DashBoardLayout from "../Layouts/DashBoardLayout";
+import AddCamp from "../Pages/Dashboard/AddCamp/AddCamp";
+import Profile from "../Pages/Dashboard/Profile/Profile";
 
 
 export const router = createBrowserRouter([
@@ -38,7 +40,17 @@ export const router = createBrowserRouter([
         },
         {
             path: 'dashboard',
-            element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>
+            element: <PrivateRoutes><DashBoardLayout></DashBoardLayout></PrivateRoutes>,
+            children:[
+              {
+                index: true,
+                element: <Profile></Profile>
+              },
+              {
+                path: 'add-a-camp',
+                element: <AddCamp></AddCamp>
+              }
+            ]
         }
       ]
     },

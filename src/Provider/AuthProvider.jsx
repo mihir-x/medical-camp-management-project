@@ -53,7 +53,7 @@ const AuthProvider = ({children}) => {
                 })
             }
             else{
-                axiosPublic.post('/jwt/logout', loggedUser, {withCredentials: true})
+                axiosPublic.get('/jwt/logout', {withCredentials: true})
                 .then(res =>{
                     console.log('token cleared: ', res.data)
                     setLoading(false)
