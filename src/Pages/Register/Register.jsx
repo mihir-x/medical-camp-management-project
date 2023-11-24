@@ -2,12 +2,33 @@ import { Button, FileInput, Label, Select, TextInput } from "flowbite-react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc'
+import { uploadImage } from "../../API/utils";
+import useAuth from "../../Hooks/useAuth";
 
 
 const Register = () => {
 
+    const {createUser, updateUserProfile, loading} = useAuth()
+
     const handleRegistration = async(e) =>{
         e.preventDefault()
+        const form = e.target 
+        const name = form.name.value 
+        const role = form.role.value 
+        const email = form.email.value 
+        const password = form.password.value 
+        const image = form.image.files[0]
+
+        console.log(name, role, email, password, image)
+        try{
+            const imageData = await uploadImage(image)
+            const result = await createUser(email, password)
+            await updateUserProfile(name, imageData?.data?.display_url)
+            console.log('account created successfully: ', result)
+        }
+        catch(err){
+            console.log(err.message)
+        }
         
     }
 
