@@ -1,7 +1,13 @@
 import { Sidebar } from 'flowbite-react';
 import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from 'react-icons/hi';
+import useRole from '../../../Hooks/useRole';
 
 const DashboardSidebar = () => {
+
+    const [role, isLoading] = useRole()
+    if(isLoading) return <p>loading</p>
+    console.log(role)
+
     return (
         <div>
             <Sidebar aria-label="Default sidebar example">

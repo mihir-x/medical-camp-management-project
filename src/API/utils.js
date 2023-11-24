@@ -18,5 +18,6 @@ export const clearCookie = async() =>{
 //get user role
 export const getRole = async (email) =>{
     const {data} = await axiosSecure.get(`/user/${email}`)
+    console.log('role in get role: ', data.role)
     return data.role
 }
