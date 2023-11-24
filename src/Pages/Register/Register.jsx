@@ -8,7 +8,7 @@ import useAuth from "../../Hooks/useAuth";
 
 const Register = () => {
 
-    const {createUser, updateUserProfile, loading} = useAuth()
+    const {createUser, updateUserProfile} = useAuth()
 
     const handleRegistration = async(e) =>{
         e.preventDefault()

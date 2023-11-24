@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
 
-    const {logIn, loading} = useAuth()
+    const {logIn} = useAuth()
     const navigate = useNavigate()
 
     const handleLogin = async(e) =>{
