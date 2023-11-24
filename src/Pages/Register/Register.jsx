@@ -1,14 +1,18 @@
 import { Button, FileInput, Label, Select, TextInput } from "flowbite-react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc'
 import { uploadImage } from "../../API/utils";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
 
     const {createUser, updateUserProfile} = useAuth()
+    const axiosPublic = useAxiosPublic()
+    const navigate = useNavigate()
 
     const handleRegistration = async(e) =>{
         e.preventDefault()
@@ -24,10 +28,33 @@ const Register = () => {
             const imageData = await uploadImage(image)
             const result = await createUser(email, password)
             await updateUserProfile(name, imageData?.data?.display_url)
-            console.log('account created successfully: ', result)
+            //save user info to database
+            const userInfo = {
+                name: name,
+                email: email, 
+                role: role,
+                photo: imageData?.data?.display_url,
+            }
+            axiosPublic.post('/users', userInfo)
+            .then(res =>{
+                if(res.data.insertedId){
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `Welcome ${result.user.displayName}`,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                      navigate('/')
+                }
+            })
         }
         catch(err){
-            console.log(err.message)
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.message
+              })
         }
         
     }
