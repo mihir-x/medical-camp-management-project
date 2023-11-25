@@ -3,20 +3,19 @@ import useAuth from "./useAuth";
 import { getUser } from "../API/utils";
 
 
-const useRole = () => {
+const useUser = () => {
     const {user, loading} = useAuth()
 
-    const {data:role, isLoading} = useQuery({
+   const {data:userAccount, isLoading} = useQuery({
         enabled: !loading && !!user?.email,
         queryFn: async() => {
            const res = await getUser(user?.email)
-           return res.role
-        
+           return res
         },
-        queryKey: ['role']
+        queryKey: ['user']
     })
-    console.log('role in useRole: ', role)
-    return [role, isLoading]
+    console.log('user in useUser: ', userAccount)
+    return [userAccount, isLoading]
 };
 
-export default useRole;
+export default useUser;

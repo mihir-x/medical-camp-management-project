@@ -15,15 +15,15 @@ export const clearCookie = async() =>{
     return data
 }
 
-//get user 
-export const getUser = async (email) =>{
-    const {data} = await axiosSecure.get(`/user/${email}`)
-    return data
-}
+// //get user 
+// export const getUser = async (email) =>{
+//     const {data} = await axiosSecure.get(`/user/${email}`)
+//     return data
+// }
 
 //get user role
-export const getRole = async (email) =>{
+export const getUser = async (email) =>{
     const {data} = await axiosSecure.get(`/user/${email}`)
     console.log('role in get role: ', data.role)
-    return data.role
+    return data
 }
