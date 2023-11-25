@@ -14,13 +14,13 @@ const DashboardSidebar = () => {
             <Sidebar aria-label="Default sidebar example">
                 <Sidebar.Items>
                     <Sidebar.ItemGroup>
-                        <Link to='/dashboard'>
-                            <Sidebar.Item icon={HiUser}>
-                                Profile
-                            </Sidebar.Item>
-                        </Link>
                         {
                             role && role === 'Organizer' ? <>
+                                <Link to='/dashboard/organizer-profile'>
+                                    <Sidebar.Item icon={HiUser}>
+                                        Profile
+                                    </Sidebar.Item>
+                                </Link>
                                 <Link to='/dashboard/add-a-camp'>
                                     <Sidebar.Item icon={HiChartPie}>
                                         Add A Camp
@@ -50,6 +50,11 @@ const DashboardSidebar = () => {
                         }
                         {
                             role && role === 'Participant' ? <>
+                                <Link to='/dashboard/participant-profile'>
+                                    <Sidebar.Item icon={HiUser}>
+                                        Profile
+                                    </Sidebar.Item>
+                                </Link>
                                 <Link to='/dashboard/registered-camps'>
                                     <Sidebar.Item icon={HiTable}>
                                         Registered Camps
@@ -69,6 +74,11 @@ const DashboardSidebar = () => {
                         }
                         {
                             role && role === 'HealthcareProfessional' ? <>
+                                <Link to='/dashboard/professional-profile'>
+                                    <Sidebar.Item icon={HiUser}>
+                                        Profile
+                                    </Sidebar.Item>
+                                </Link>
                                 <Link to='/dashboard/accepted-camps'>
                                     <Sidebar.Item icon={HiTable}>
                                         Accepted Camps

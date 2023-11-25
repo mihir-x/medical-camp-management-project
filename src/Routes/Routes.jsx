@@ -9,7 +9,10 @@ import Login from "../Pages/Login/Login";
 import PrivateRoutes from "./PrivateRoutes";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
 import AddCamp from "../Pages/Dashboard/AddCamp/AddCamp";
-import Profile from "../Pages/Dashboard/Profile/Profile";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
+import OrganizerProfile from "../Pages/Dashboard/Profile/OrganizerProfile";
+import ParticipantProfile from "../Pages/Dashboard/Profile/ParticipantProfile";
+import ProfessionalProfile from "../Pages/Dashboard/Profile/ProfessionalProfile";
 
 
 export const router = createBrowserRouter([
@@ -44,7 +47,19 @@ export const router = createBrowserRouter([
             children:[
               {
                 index: true,
-                element: <Profile></Profile>
+                element: <DashboardHome></DashboardHome>
+              },
+              {
+                path: 'organizer-profile',
+                element: <OrganizerProfile></OrganizerProfile>
+              },
+              {
+                path: 'participant-profile',
+                element: <ParticipantProfile></ParticipantProfile>
+              },
+              {
+                path: 'professional-profile',
+                element: <ProfessionalProfile></ProfessionalProfile>
               },
               {
                 path: 'add-a-camp',
