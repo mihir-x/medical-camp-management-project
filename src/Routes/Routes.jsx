@@ -13,6 +13,7 @@ import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import OrganizerProfile from "../Pages/Dashboard/Profile/OrganizerProfile";
 import ParticipantProfile from "../Pages/Dashboard/Profile/ParticipantProfile";
 import ProfessionalProfile from "../Pages/Dashboard/Profile/ProfessionalProfile";
+import CampDetails from "../Pages/CampDetails/CampDetails";
 
 
 export const router = createBrowserRouter([
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
         {
             path: 'available-camps',
             element: <AvailableCamps></AvailableCamps>
+        },
+        {
+          path: 'camp-details/:id',
+          element: <CampDetails></CampDetails>
         },
         {
             path: 'dashboard',

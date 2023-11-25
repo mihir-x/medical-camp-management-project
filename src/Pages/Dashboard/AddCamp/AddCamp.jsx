@@ -4,10 +4,11 @@ import { useForm } from "react-hook-form";
 import { uploadImage } from "../../../API/utils";
 import axiosSecure from "../../../API";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 
 const AddCamp = () => {
-
+    const {user} = useAuth()
     const { register, handleSubmit, reset } = useForm()
 
     const onSubmit = async (data) => {
@@ -27,7 +28,8 @@ const AddCamp = () => {
                     audience: data.audience,
                     description: data.description,
                     photo: imageData.data.display_url,
-                    createdAt: Date.now()
+                    createdAt: Date.now(),
+                    organizer: user?.email
                 }
                 const campRes = await axiosSecure.post('/camps', campData)
                 if (campRes.data.insertedId) {
