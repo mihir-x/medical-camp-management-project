@@ -29,7 +29,8 @@ const AddCamp = () => {
                     description: data.description,
                     photo: imageData.data.display_url,
                     createdAt: Date.now(),
-                    organizer: user?.email
+                    organizer: user?.email,
+                    participant: 0
                 }
                 const campRes = await axiosSecure.post('/camps', campData)
                 if (campRes.data.insertedId) {

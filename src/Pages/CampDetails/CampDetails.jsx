@@ -67,7 +67,7 @@ const CampDetails = () => {
                             Join Camp
                         </Button>
                     </div>
-                    <CampRegisterModal openModal={openModal} onCloseModal={onCloseModal} userInfo={userAccount}></CampRegisterModal>
+                    <CampRegisterModal openModal={openModal} onCloseModal={onCloseModal} camp={data} userInfo={userAccount}></CampRegisterModal>
                 </Card>
             </Container>
         </div>

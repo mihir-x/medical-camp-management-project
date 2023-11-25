@@ -1,11 +1,56 @@
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import PropTypes from 'prop-types'
+import Swal from "sweetalert2";
+import axiosSecure from "../../../API";
 
 
-const CampRegisterModal = ({ openModal, onCloseModal, userInfo }) => {
+const CampRegisterModal = ({ openModal, onCloseModal, camp, userInfo }) => {
 
     const handleCampRegister = async (e) => {
         e.preventDefault()
+        const form = e.target
+        const name = form.name.value
+        const phone = form.phone.value
+        const address = form.address.value
+        const age = form.age.value
+        const gender = form.gender.value
+        const fee = form.fee.value
+        const requirements = form.requirements.value
+
+        const registeredCamp = {
+            name,
+            phone,
+            address,
+            age,
+            gender,
+            fee: parseInt(fee),
+            requirements,
+            participant: userInfo?.email,
+            campId: camp?._id,
+            approval: 'Pending',
+        }
+        try {
+            const res = await axiosSecure.post('/participation', registeredCamp)
+            if (res?.data?.insertedId) {
+                const coutRes = await axiosSecure.patch(`/camps/${camp?._id}`, { participant: 1 })
+                if (coutRes?.data?.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `You have successfully registered for this medical camp`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
+        }
+        catch (err) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.message
+            })
+        }
     }
 
     return (
@@ -54,14 +99,14 @@ const CampRegisterModal = ({ openModal, onCloseModal, userInfo }) => {
                                 <div className="mb-2 block">
                                     <Label htmlFor="fee" value="Camp fee" />
                                 </div>
-                                <TextInput id="fee" disabled name="fee" type="number" placeholder="Fee" shadow />
+                                <TextInput id="fee" disabled name="fee" type="number" defaultValue={camp?.fee} placeholder="Fee" shadow />
                             </div>
                         </div>
                         <div>
                             <div className="mb-2 block">
                                 <Label htmlFor="requirements" value="Requirements" />
                             </div>
-                            <TextInput id="requirements" name="requirements" type="text"  placeholder="Health related issue" required shadow />
+                            <TextInput id="requirements" name="requirements" type="text" placeholder="Health related issue" required shadow />
                         </div>
 
                         <Button type="submit">Register</Button>
@@ -77,6 +122,7 @@ export default CampRegisterModal;
 CampRegisterModal.propTypes = {
     openModal: PropTypes.func,
     onCloseModal: PropTypes.func,
+    camp: PropTypes.object,
     userInfo: PropTypes.object,
 
 }
