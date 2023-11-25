@@ -7,9 +7,14 @@ import Container from "../../Components/Shared/Container/Container";
 import useRole from "../../Hooks/useRole";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import CampRegisterModal from "../../Components/Shared/CampRegisterModal/CampRegisterModal";
+import useUser from "../../Hooks/useUser";
 
 
 const CampDetails = () => {
+    const [openModal, setOpenModal] = useState(false);
+    const [userAccount] = useUser()
     const axiosPublic = useAxiosPublic()
     const [role] = useRole()
     const { id } = useParams()
@@ -21,7 +26,10 @@ const CampDetails = () => {
         }
     })
     if (isLoading) return <Loader></Loader>
-    console.log(data)
+    
+    function onCloseModal() {
+        setOpenModal(false);
+    }
 
     return (
         <div>
@@ -55,10 +63,11 @@ const CampDetails = () => {
                         </div>
                     </div>
                     <div className="flex justify-center">
-                        <Button disabled={role !== 'Participant'} outline gradientDuoTone="purpleToBlue">
+                        <Button onClick={() => setOpenModal(true)} disabled={role !== 'Participant'} outline gradientDuoTone="purpleToBlue">
                             Join Camp
                         </Button>
                     </div>
+                    <CampRegisterModal openModal={openModal} onCloseModal={onCloseModal} userInfo={userAccount}></CampRegisterModal>
                 </Card>
             </Container>
         </div>
