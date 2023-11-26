@@ -28,6 +28,7 @@ const CampRegisterModal = ({ openModal, onCloseModal, camp, userInfo }) => {
             participant: userInfo?.email,
             campId: camp?._id,
             approval: 'Pending',
+            payment: 'Unpaid',
         }
         try {
             const res = await axiosSecure.post('/participation', registeredCamp)

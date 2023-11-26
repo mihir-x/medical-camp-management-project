@@ -27,6 +27,10 @@ const CampCard = ({ camp, role, userAccount }) => {
                     <p className="font-bold text-gray-800">Date: <span className=" text-gray-600 font-normal">{camp?.date}</span></p>
                     <p className="font-bold text-gray-800">Time: <span className=" text-gray-600 font-normal">{camp?.time}</span></p>
                 </div>
+                <div className="flex justify-between">
+                    <p className="font-bold text-gray-800">Fee: <span className=" text-gray-600 font-normal">${camp?.fee}</span></p>
+                    <p className="font-bold text-gray-800">Participant: <span className=" text-gray-600 font-normal">{camp?.participant}</span></p>
+                </div>
             </div>
             <div className="flex justify-between">
                 <Button onClick={() => setOpenModal(true)} disabled={role !== 'Participant'} outline gradientDuoTone="purpleToBlue">

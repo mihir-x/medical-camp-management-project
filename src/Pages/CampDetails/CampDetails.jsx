@@ -26,7 +26,7 @@ const CampDetails = () => {
         }
     })
     if (isLoading) return <Loader></Loader>
-    
+
     function onCloseModal() {
         setOpenModal(false);
     }
@@ -61,6 +61,10 @@ const CampDetails = () => {
                             <p className="font-bold text-gray-800">Date: <span className=" text-gray-600 font-normal">{data?.date}</span></p>
                             <p className="font-bold text-gray-800">Time: <span className=" text-gray-600 font-normal">{data?.time}</span></p>
                         </div>
+                    </div>
+                    <div>
+                        <p className="font-bold text-gray-800">Fee: <span className=" text-gray-600 font-normal">${data?.fee}</span></p>
+                        <p className="font-bold text-gray-800">Participant: <span className=" text-gray-600 font-normal">{data?.participant}</span></p>
                     </div>
                     <div className="flex justify-center">
                         <Button onClick={() => setOpenModal(true)} disabled={role !== 'Participant'} outline gradientDuoTone="purpleToBlue">
