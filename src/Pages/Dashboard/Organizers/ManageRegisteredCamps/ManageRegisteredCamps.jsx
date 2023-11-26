@@ -22,7 +22,8 @@ const ManageRegisteredCamps = () => {
     if (isLoading) return <Loader></Loader>
     console.log(camps)
 
-    const handleCancle = async (id) => {
+    const handleCancle = async (id, campId) => {
+        console.log(campId)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -36,13 +37,17 @@ const ManageRegisteredCamps = () => {
                 try {
                     const res = await axiosSecure.delete(`/participation/delete/${id}`)
                     if (res.data.deletedCount > 0) {
-                        
                         refetch()
-                        Swal.fire({
-                            title: "Canceled!",
-                            text: "Registration has been canceled",
-                            icon: "success"
-                        });
+                        const decrementRes = await axiosSecure.patch(`/camps/decrement/${campId}`, { participant: 1 })
+                        if (decrementRes?.data?.modifiedCount > 0) {
+                            
+                            Swal.fire({
+                                title: "Canceled!",
+                                text: "Registration has been canceled",
+                                icon: "success"
+                            });
+                        }
+
                     }
                 }
                 catch (err) {
@@ -100,7 +105,7 @@ const ManageRegisteredCamps = () => {
         fee: camp?.fee,
         payment: camp?.payment,
         approval: camp?.approval,
-        cancel: <Button onClick={() => handleCancle(camp?._id)} outline gradientDuoTone="pinkToOrange">Cancel</Button>,
+        cancel: <Button onClick={() => handleCancle(camp?._id, camp?.campId)} outline gradientDuoTone="pinkToOrange">Cancel</Button>,
     }))
 
     return (
