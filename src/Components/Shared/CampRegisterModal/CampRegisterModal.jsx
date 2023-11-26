@@ -41,6 +41,7 @@ const CampRegisterModal = ({ openModal, onCloseModal, camp, userInfo }) => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    onCloseModal()
                 }
             }
         }

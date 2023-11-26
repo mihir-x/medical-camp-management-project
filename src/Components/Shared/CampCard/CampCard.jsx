@@ -1,8 +1,15 @@
 import { Button, Card } from "flowbite-react";
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
+import CampRegisterModal from "../CampRegisterModal/CampRegisterModal";
+import { useState } from "react";
 
-const CampCard = ({ camp, role }) => {
+const CampCard = ({ camp, role, userAccount }) => {
+    const [openModal, setOpenModal] = useState(false);
+
+    function onCloseModal() {
+        setOpenModal(false);
+    }
     return (
         <Card className="max-w-sm" imgSrc={camp?.photo} horizontal>
             <h5 className="text-lg md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -22,7 +29,7 @@ const CampCard = ({ camp, role }) => {
                 </div>
             </div>
             <div className="flex justify-between">
-                <Button disabled={role !== 'Participant'} outline gradientDuoTone="purpleToBlue">
+                <Button onClick={() => setOpenModal(true)} disabled={role !== 'Participant'} outline gradientDuoTone="purpleToBlue">
                     Join Camp
                 </Button>
                 <Link to={`/camp-details/${camp?._id}`}>
@@ -31,6 +38,7 @@ const CampCard = ({ camp, role }) => {
                     </Button>
                 </Link>
             </div>
+            <CampRegisterModal openModal={openModal} onCloseModal={onCloseModal} camp={camp} userInfo={userAccount}></CampRegisterModal>
         </Card>
     );
 };
@@ -38,5 +46,6 @@ const CampCard = ({ camp, role }) => {
 export default CampCard;
 CampCard.propTypes = {
     camp: PropTypes.object,
-    role: PropTypes.string
+    role: PropTypes.string,
+    userAccount: PropTypes.object,
 }

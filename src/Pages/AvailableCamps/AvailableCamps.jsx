@@ -6,10 +6,12 @@ import Container from "../../Components/Shared/Container/Container";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import CampCard from "../../Components/Shared/CampCard/CampCard";
 import useRole from "../../Hooks/useRole";
+import useUser from "../../Hooks/useUser";
 
 
 const AvailableCamps = () => {
     const axiosPublic = useAxiosPublic()
+    const [userAccount] = useUser()
     const [role] = useRole()
     const { data: camps, isLoading } = useQuery({
         queryKey: ['allCamps'],
@@ -31,7 +33,7 @@ const AvailableCamps = () => {
                     <SectionTitle heading='Available Camps'></SectionTitle>
                     <div className=" grid grid-cols-1 md:grid-cols-2 gap-8">
                         {
-                            camps?.map(camp => <CampCard key={camp._id} camp={camp} role={role}></CampCard>)
+                            camps?.map(camp => <CampCard key={camp._id} camp={camp} role={role} userAccount={userAccount}></CampCard>)
                         }
                     </div>
                 </div>
