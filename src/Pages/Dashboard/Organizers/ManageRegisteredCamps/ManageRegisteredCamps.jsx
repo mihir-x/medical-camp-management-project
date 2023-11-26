@@ -104,7 +104,7 @@ const ManageRegisteredCamps = () => {
         time: camp?.campTime,
         fee: camp?.fee,
         payment: camp?.payment,
-        approval: camp?.approval,
+        approval: <Button disabled={camp.payment ==='Unpaid'} outline gradientDuoTone="pinkToOrange">{camp?.approval}</Button>,
         cancel: <Button onClick={() => handleCancle(camp?._id, camp?.campId)} outline gradientDuoTone="pinkToOrange">Cancel</Button>,
     }))
 
