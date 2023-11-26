@@ -27,6 +27,11 @@ const CampRegisterModal = ({ openModal, onCloseModal, camp, userInfo }) => {
             requirements,
             participant: userInfo?.email,
             campId: camp?._id,
+            campName: camp?.name,
+            campDate: camp?.date,
+            campTime: camp?.time,
+            campVenue: camp?.venue,
+            organizer: camp?.organizer,
             approval: 'Pending',
             payment: 'Unpaid',
         }
