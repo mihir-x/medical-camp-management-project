@@ -6,6 +6,7 @@ import useAuth from "../../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import axiosSecure from "../../../../API";
 import Loader from "../../../../Components/Loader/Loader";
+import Swal from "sweetalert2";
 
 
 const ParticipantRegisteredCamp = () => {
@@ -21,6 +22,41 @@ const ParticipantRegisteredCamp = () => {
     })
     if (isLoading) return <Loader></Loader>
     console.log(camps)
+
+    const handleCancle = async (id, campId) => {
+        console.log(campId)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, cancel it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const res = await axiosSecure.delete(`/participation/delete/${id}`)
+                    if (res.data.deletedCount > 0) {
+                        refetch()
+                        Swal.fire({
+                            title: "Canceled!",
+                            text: "Registration has been canceled",
+                            icon: "success"
+                        });
+                    }
+                }
+                catch (err) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: err.message
+                    })
+                }
+
+            }
+        });
+    }
 
     const column = [
         {
@@ -63,9 +99,9 @@ const ParticipantRegisteredCamp = () => {
         date: camp?.campDate,
         time: camp?.campTime,
         fee: camp?.fee,
-        payment: <Button disabled={camp?.payment === 'Paid'} outline gradientDuoTone="pinkToOrange">{camp?.payment === 'Unpaid' ? 'Pay': 'Paid'}</Button>,
+        payment: <Button disabled={camp?.payment === 'Paid'} outline gradientDuoTone="pinkToOrange">{camp?.payment === 'Unpaid' ? 'Pay' : 'Paid'}</Button>,
         approval: camp?.approval,
-        cancel: <Button  outline gradientDuoTone="pinkToOrange">Cancel</Button>,
+        cancel: <Button onClick={() => handleCancle(camp?._id)} disabled={camp?.payment === 'Paid'} outline gradientDuoTone="pinkToOrange">Cancel</Button>,
     }))
 
     return (
