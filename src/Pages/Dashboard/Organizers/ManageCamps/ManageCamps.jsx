@@ -7,6 +7,7 @@ import { Button } from "flowbite-react";
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 const ManageCamps = () => {
@@ -20,7 +21,7 @@ const ManageCamps = () => {
         }
     })
     if (isLoading) return <Loader></Loader>
-
+    
     const handleCampDelete = async (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -92,7 +93,7 @@ const ManageCamps = () => {
         services: camp.services,
         professionals: camp.professionals,
         date: camp.date,
-        update: <Button outline gradientDuoTone="purpleToBlue">Update</Button>,
+        update: <Link to={`/dashboard/update-camp/${camp._id}`}><Button outline gradientDuoTone="purpleToBlue">Update</Button></Link> ,
         delete: <Button onClick={() => handleCampDelete(camp._id)} outline gradientDuoTone="pinkToOrange">Delete</Button>,
     }))
 
