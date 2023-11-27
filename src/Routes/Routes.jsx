@@ -82,7 +82,7 @@ export const router = createBrowserRouter([
               },
               {
                 path: 'update-camp/:id',
-                element: <UpdateCamp></UpdateCamp>
+                element: <PrivateRoutes><UpdateCamp></UpdateCamp></PrivateRoutes>
               },
               {
                 path: 'manage-registered-camps',

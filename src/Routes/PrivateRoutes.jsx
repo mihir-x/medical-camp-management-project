@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import Loader from "../Components/Loader/Loader";
 import PropTypes from 'prop-types'
@@ -6,10 +6,11 @@ import PropTypes from 'prop-types'
 
 const PrivateRoutes = ({children}) => {
     const {user, loading} = useAuth()
-    const location = useLocation()
+    // const location = useLocation()
     if(loading) return <Loader></Loader>
     if(!user){
-        return <Navigate to='/login' state={{from: location}} replace></Navigate>
+        return <Navigate to='/login'></Navigate>
+        // return <Navigate to='/login' state={{from: location}} replace></Navigate>
     }
     return children
 };

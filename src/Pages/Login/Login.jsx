@@ -1,7 +1,7 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
@@ -10,8 +10,8 @@ const Login = () => {
 
     const {logIn} = useAuth()
     const navigate = useNavigate()
-    const location = useLocation()
-    const from = location?.state?.from?.pathname || '/'
+    // const location = useLocation()
+    // const from = location?.state?.from?.pathname || '/'
 
     const handleLogin = async(e) =>{
         e.preventDefault()
@@ -20,7 +20,7 @@ const Login = () => {
         const password = form.password.value 
         try{
             const result = await logIn(email, password)
-            navigate(from, {replace: true})
+            navigate('/dashboard') //from, {replace: true}
             Swal.fire({
                 position: "top-end",
                 icon: "success",
