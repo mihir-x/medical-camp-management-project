@@ -18,7 +18,6 @@ const Testimonials = () => {
     if (isLoading) {
         return <Loader></Loader>
     }
-    console.log(testimonial)
 
     return (
         <Container>

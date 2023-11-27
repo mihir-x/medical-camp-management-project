@@ -14,7 +14,6 @@ const useUser = () => {
         },
         queryKey: ['user']
     })
-    console.log('user in useUser: ', userAccount)
     return [userAccount, isLoading]
 };
 

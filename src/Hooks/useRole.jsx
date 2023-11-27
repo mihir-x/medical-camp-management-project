@@ -15,7 +15,6 @@ const useRole = () => {
         },
         queryKey: ['role']
     })
-    console.log('role in useRole: ', role)
     return [role, isLoading]
 };
 

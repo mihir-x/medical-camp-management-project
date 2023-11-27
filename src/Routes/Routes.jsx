@@ -20,6 +20,8 @@ import ManageRegisteredCamps from "../Pages/Dashboard/Organizers/ManageRegistere
 import ParticipantRegisteredCamp from "../Pages/Dashboard/Participant/ParticipantRegisteredCamp/ParticipantRegisteredCamp";
 import PaymentHistory from "../Pages/Dashboard/Participant/PaymentHistory/PaymentHistory";
 import FeedbackRating from "../Pages/Dashboard/Participant/FeedbackRating/FeedbackRating";
+import AddUpcomingCamp from "../Pages/Dashboard/Organizers/AddUpcomingCamp/AddUpcomingCamp";
+import UpcomingCampDetails from "../Pages/UpcomingCampDetails/UpcomingCampDetails";
 
 
 export const router = createBrowserRouter([
@@ -46,11 +48,15 @@ export const router = createBrowserRouter([
         },
         {
             path: 'available-camps',
-            element: <AvailableCamps></AvailableCamps>
+            element: <PrivateRoutes><AvailableCamps></AvailableCamps></PrivateRoutes>
         },
         {
           path: 'camp-details/:id',
           element: <CampDetails></CampDetails>
+        },
+        {
+          path: 'upcoming-camp-details/:id',
+          element: <UpcomingCampDetails></UpcomingCampDetails>
         },
         {
             path: 'dashboard',
@@ -58,23 +64,23 @@ export const router = createBrowserRouter([
             children:[
               {
                 index: true,
-                element: <DashboardHome></DashboardHome>
+                element: <PrivateRoutes><DashboardHome></DashboardHome></PrivateRoutes>
               },
               {
                 path: 'organizer-profile',
-                element: <OrganizerProfile></OrganizerProfile>
+                element: <PrivateRoutes><OrganizerProfile></OrganizerProfile></PrivateRoutes>
               },
               {
                 path: 'participant-profile',
-                element: <ParticipantProfile></ParticipantProfile>
+                element: <PrivateRoutes><ParticipantProfile></ParticipantProfile></PrivateRoutes>
               },
               {
                 path: 'professional-profile',
-                element: <ProfessionalProfile></ProfessionalProfile>
+                element: <PrivateRoutes><ProfessionalProfile></ProfessionalProfile></PrivateRoutes>
               },
               {
                 path: 'add-a-camp',
-                element: <AddCamp></AddCamp>
+                element: <PrivateRoutes><AddCamp></AddCamp></PrivateRoutes>
               },
               {
                 path: 'manage-camps',
@@ -87,6 +93,10 @@ export const router = createBrowserRouter([
               {
                 path: 'manage-registered-camps',
                 element: <PrivateRoutes><ManageRegisteredCamps></ManageRegisteredCamps></PrivateRoutes>
+              },
+              {
+                path: 'add-upcoming-camp',
+                element: <PrivateRoutes><AddUpcomingCamp></AddUpcomingCamp></PrivateRoutes>
               },
               {
                 path: 'registered-camps',

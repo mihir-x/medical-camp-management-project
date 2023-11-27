@@ -1,15 +1,16 @@
-import { Helmet } from "react-helmet-async";
-import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import { useForm } from "react-hook-form";
-import { uploadImage } from "../../../API/utils";
-import axiosSecure from "../../../API";
+import useAuth from "../../../../Hooks/useAuth";
+import { uploadImage } from "../../../../API/utils";
+import axiosSecure from "../../../../API";
 import Swal from "sweetalert2";
-import useAuth from "../../../Hooks/useAuth";
+import { Helmet } from "react-helmet-async";
+import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import { Button } from "flowbite-react";
 
 
-const AddCamp = () => {
-    const {user} = useAuth()
+const AddUpcomingCamp = () => {
+
+    const { user } = useAuth()
     const { register, handleSubmit, reset } = useForm()
 
     const onSubmit = async (data) => {
@@ -25,21 +26,21 @@ const AddCamp = () => {
                     time: data.time,
                     venue: data.venue,
                     services: data.services,
-                    professionals: data.professionals,
                     audience: data.audience,
                     description: data.description,
                     photo: imageData.data.display_url,
                     createdAt: Date.now(),
                     organizer: user?.email,
-                    participant: 0
+                    interestedParticipant: 0,
+                    interestedProfessional: 0,
                 }
-                const campRes = await axiosSecure.post('/camps', campData)
+                const campRes = await axiosSecure.post('/upcoming-camp', campData)
                 if (campRes.data.insertedId) {
                     reset()
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `A New Camp Added Successfully`,
+                        title: `An Upcoming Camp Added Successfully`,
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -59,10 +60,10 @@ const AddCamp = () => {
         <div>
             <Helmet>
                 <title>
-                    MediVoyage | Add Camp
+                    MediVoyage | Add Upcoming Camp
                 </title>
             </Helmet>
-            <SectionTitle heading='Add A Camp'></SectionTitle>
+            <SectionTitle heading='Add Upcoming Camp'></SectionTitle>
             <div className="text-sm md:text-base p-5">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className=" flex items-center gap-2 md:gap-5">
@@ -108,12 +109,7 @@ const AddCamp = () => {
                         </div>
                     </div>
                     <div className=" flex items-center gap-2 md:gap-5">
-                        <div className="form-control w-full my-2">
-                            <label className="label">
-                                <span className="label-text">Professionals</span>
-                            </label>
-                            <input {...register('professionals', { required: true })} type="text" placeholder="Healthcare Professional" className="input input-bordered w-full " />
-                        </div>
+                        
                         <div className="form-control w-full my-2">
                             <label className="label">
                                 <span className="label-text">Target Audience</span>
@@ -134,7 +130,6 @@ const AddCamp = () => {
                         <input {...register('image', { required: true })} type="file" placeholder="Image" className="input input-bordered w-full " />
                     </div>
                     <div className="flex justify-center items-center">
-                        {/* <input type="submit" className=" p-2 bg-slate-800 text-white font-bold rounded-lg" /> */}
                         <Button type="submit">Add Camp</Button>
                     </div>
                 </form>
@@ -143,4 +138,4 @@ const AddCamp = () => {
     );
 };
 
-export default AddCamp;
+export default AddUpcomingCamp;
