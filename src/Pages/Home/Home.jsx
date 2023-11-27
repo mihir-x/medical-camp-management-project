@@ -3,6 +3,7 @@ import Banner from "../../Components/Banner/Banner";
 import PopularCamps from "../../Components/PopularCamps/PopularCamps";
 import Testimonials from "../../Components/Testimonials/Testimonials";
 import UpcomingSection from "../../Components/Upcoming/UpcomingSection";
+import Faq from "../../Components/Faq/Faq";
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
             <PopularCamps></PopularCamps>
             <Testimonials></Testimonials>
             <UpcomingSection></UpcomingSection>
+            <Faq></Faq>
         </div>
     );
 };
