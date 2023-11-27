@@ -4,7 +4,7 @@ import axiosSecure from '../../../../API/index';
 import PropTypes from 'prop-types'
 import Swal from "sweetalert2";
 
-const CheckoutForm = ({campData, onCloseModal}) => {
+const CheckoutForm = ({campData, onCloseModal, refetch}) => {
     const [cardError, setCardError] = useState('')
     const [clientSecret, setClientSecret] = useState('')
     const [transactionId, setTransactionId] = useState('')
@@ -76,6 +76,7 @@ const CheckoutForm = ({campData, onCloseModal}) => {
                     const res = await axiosSecure.put(`/payment/${campData?._id}`, paymentInfo)
                     if(res?.data?.savePayment?.insertedId){
                         onCloseModal()
+                        refetch()
                         Swal.fire({
                             title: "Paid!",
                             text: "You have paid for this camp successfully",
@@ -130,4 +131,5 @@ export default CheckoutForm;
 CheckoutForm.propTypes ={
     campData: PropTypes.object,
     onCloseModal: PropTypes.func,
+    refetch: PropTypes.func
 }

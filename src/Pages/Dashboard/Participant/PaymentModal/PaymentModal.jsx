@@ -7,7 +7,7 @@ import CheckoutForm from "./CheckoutForm";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_PUBLISHABLE_KEY)
 
-const PaymentModal = ({openModal, onCloseModal, campData}) => {
+const PaymentModal = ({openModal, onCloseModal, campData, refetch}) => {
     console.log(campData)
     return (
         <div>
@@ -15,7 +15,7 @@ const PaymentModal = ({openModal, onCloseModal, campData}) => {
                 <Modal.Header />
                 <Modal.Body>
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm campData={campData} onCloseModal={onCloseModal}></CheckoutForm>
+                        <CheckoutForm campData={campData} onCloseModal={onCloseModal} refetch={refetch}></CheckoutForm>
                     </Elements>
                 </Modal.Body>
             </Modal>
@@ -29,4 +29,5 @@ PaymentModal.propTypes ={
     openModal: PropTypes.func,
     onCloseModal: PropTypes.func,
     campData: PropTypes.object,
+    refetch: PropTypes.func,
 }

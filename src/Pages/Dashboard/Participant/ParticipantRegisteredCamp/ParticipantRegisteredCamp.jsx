@@ -124,7 +124,7 @@ const ParticipantRegisteredCamp = () => {
             </Helmet>
             <SectionTitle heading='Registered Camps'></SectionTitle>
             <DataTable columns={column} data={tableData} style={{ 'overflowX': 'auto' }}></DataTable>
-            <PaymentModal openModal={openModal} onCloseModal={onCloseModal} campData={campData}></PaymentModal>
+            <PaymentModal openModal={openModal} onCloseModal={onCloseModal} campData={campData} refetch={refetch}></PaymentModal>
         </div>
     );
 };

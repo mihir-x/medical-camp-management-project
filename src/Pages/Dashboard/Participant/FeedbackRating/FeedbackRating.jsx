@@ -5,15 +5,21 @@ import Loader from "../../../../Components/Loader/Loader";
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import DataTable from "react-data-table-component";
+import { Button } from "flowbite-react";
+import { useState } from "react";
+import FeedBackModal from "./FeedBackModal";
 
 
 const FeedbackRating = () => {
+    const [openModal, setOpenModal] = useState(false);
+    const [campData, setCampData] = useState({})
+
     const { user } = useAuth()
 
     const { data: camps, isLoading } = useQuery({
-        queryKey: ['paidCamp', user?.email],
+        queryKey: ['feedback', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/paid-camp/${user?.email}`)
+            const res = await axiosSecure.get(`/participation/confirmed/${user?.email}`)
             return res.data
         }
     })
@@ -42,16 +48,16 @@ const FeedbackRating = () => {
             selector: row => row.fee,
         },
         {
-            name: 'TransactionID',
-            selector: row => row.transactionId,
-        },
-        {
             name: 'Payment Status',
             selector: row => row.payment,
         },
         {
             name: 'Confirmation',
             selector: row => row.approval,
+        },
+        {
+            name: 'Review',
+            selector: row => row.review,
         },
     ]
 
@@ -61,10 +67,19 @@ const FeedbackRating = () => {
         date: camp?.campDate,
         time: camp?.campTime,
         fee: camp?.fee,
-        transactionId: camp?.transactionId,
         payment: camp?.payment,
         approval: camp?.approval,
+        review: <Button onClick={() => handleOpenModal(camp)} outline gradientDuoTone="cyanToBlue">Review</Button>,
     }))
+
+    const handleOpenModal = (item) => {
+        setCampData(item)
+        setOpenModal(true)
+    }
+
+    function onCloseModal() {
+        setOpenModal(false);
+    }
 
     return (
         <div className="mb-5 md:mb-8 lg:mb-16">
@@ -73,7 +88,7 @@ const FeedbackRating = () => {
             </Helmet>
             <SectionTitle heading='Feedback and Rating'></SectionTitle>
             <DataTable columns={column} data={tableData} style={{ 'overflowX': 'auto' }}></DataTable>
-
+            <FeedBackModal openModal={openModal} onCloseModal={onCloseModal} campData={campData}></FeedBackModal>
         </div>
     );
 };
