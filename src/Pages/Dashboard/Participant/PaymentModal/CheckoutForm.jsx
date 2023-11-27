@@ -68,7 +68,7 @@ const CheckoutForm = ({campData, onCloseModal}) => {
                     organizer: campData?.organizer,
                     registerId: campData?._id,
                     approval: campData?.approval,
-                    transactionId: transactionId,
+                    transactionId: paymentIntent.id,
                     paymentDate: new Date(),
                     payment: 'Paid',
                 }

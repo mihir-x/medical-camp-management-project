@@ -22,6 +22,28 @@ const ManageRegisteredCamps = () => {
     if (isLoading) return <Loader></Loader>
     console.log(camps)
 
+    const handleConfirm = async(id) =>{
+        try{
+            const res = await axiosSecure.patch(`/participation/confirm/${id}`,{approval: 'Confirmed'})
+            console.log(res.data)
+            refetch()
+            if(res.data.registerApproval.modifiedCount>0){
+                Swal.fire({
+                    title: "Confirmed!",
+                    text: "Registration has been confirmed",
+                    icon: "success"
+                });
+            }
+        }
+        catch(err){
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.message
+            })
+        }
+    }
+
     const handleCancle = async (id, campId) => {
         console.log(campId)
         Swal.fire({
@@ -104,8 +126,8 @@ const ManageRegisteredCamps = () => {
         time: camp?.campTime,
         fee: camp?.fee,
         payment: camp?.payment,
-        approval: <Button disabled={camp.payment ==='Unpaid'} outline gradientDuoTone="pinkToOrange">{camp?.approval}</Button>,
-        cancel: <Button onClick={() => handleCancle(camp?._id, camp?.campId)} outline gradientDuoTone="pinkToOrange">Cancel</Button>,
+        approval: <Button onClick={() => handleConfirm(camp?._id)} disabled={camp.payment ==='Unpaid' || camp.approval === 'Confirmed'} outline gradientDuoTone="pinkToOrange">{camp?.approval}</Button>,
+        cancel: <Button onClick={() => handleCancle(camp?._id, camp?.campId)} disabled={camp.payment ==='Unpaid'} outline gradientDuoTone="pinkToOrange">Cancel</Button>,
     }))
 
     return (

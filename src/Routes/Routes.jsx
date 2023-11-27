@@ -18,6 +18,8 @@ import ManageCamps from "../Pages/Dashboard/Organizers/ManageCamps/ManageCamps";
 import UpdateCamp from "../Pages/Dashboard/UpdateCamp/UpdateCamp";
 import ManageRegisteredCamps from "../Pages/Dashboard/Organizers/ManageRegisteredCamps/ManageRegisteredCamps";
 import ParticipantRegisteredCamp from "../Pages/Dashboard/Participant/ParticipantRegisteredCamp/ParticipantRegisteredCamp";
+import PaymentHistory from "../Pages/Dashboard/Participant/PaymentHistory/PaymentHistory";
+import FeedbackRating from "../Pages/Dashboard/Participant/FeedbackRating/FeedbackRating";
 
 
 export const router = createBrowserRouter([
@@ -89,6 +91,14 @@ export const router = createBrowserRouter([
               {
                 path: 'registered-camps',
                 element: <PrivateRoutes><ParticipantRegisteredCamp></ParticipantRegisteredCamp></PrivateRoutes>
+              },
+              {
+                path: 'payment-history',
+                element: <PrivateRoutes><PaymentHistory></PaymentHistory></PrivateRoutes>
+              },
+              {
+                path: 'feedback-and-ratings',
+                element: <PrivateRoutes><FeedbackRating></FeedbackRating></PrivateRoutes>
               }
             ]
         }
