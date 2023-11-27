@@ -7,9 +7,13 @@ import { useQuery } from "@tanstack/react-query";
 import axiosSecure from "../../../../API";
 import Loader from "../../../../Components/Loader/Loader";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import PaymentModal from "../PaymentModal/PaymentModal";
 
 
 const ParticipantRegisteredCamp = () => {
+    const [openModal, setOpenModal] = useState(false);
+    const [campData, setCampData] = useState({})
 
     const { user } = useAuth()
 
@@ -99,10 +103,19 @@ const ParticipantRegisteredCamp = () => {
         date: camp?.campDate,
         time: camp?.campTime,
         fee: camp?.fee,
-        payment: <Button disabled={camp?.payment === 'Paid'} outline gradientDuoTone="pinkToOrange">{camp?.payment === 'Unpaid' ? 'Pay' : 'Paid'}</Button>,
+        payment: <Button onClick={() => handleOpenModal(camp)} disabled={camp?.payment === 'Paid'} outline gradientDuoTone="pinkToOrange">{camp?.payment === 'Unpaid' ? 'Pay' : 'Paid'}</Button>,
         approval: camp?.approval,
         cancel: <Button onClick={() => handleCancle(camp?._id)} disabled={camp?.payment === 'Paid'} outline gradientDuoTone="pinkToOrange">Cancel</Button>,
     }))
+
+    const handleOpenModal = (item) =>{
+        setCampData(item)
+        setOpenModal(true)
+    }
+    
+    function onCloseModal() {
+        setOpenModal(false);
+    }
 
     return (
         <div className="mb-5 md:mb-8 lg:mb-16">
@@ -111,6 +124,7 @@ const ParticipantRegisteredCamp = () => {
             </Helmet>
             <SectionTitle heading='Registered Camps'></SectionTitle>
             <DataTable columns={column} data={tableData} style={{ 'overflowX': 'auto' }}></DataTable>
+            <PaymentModal openModal={openModal} onCloseModal={onCloseModal} campData={campData}></PaymentModal>
         </div>
     );
 };
