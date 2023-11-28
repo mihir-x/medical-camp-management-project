@@ -1,7 +1,7 @@
-import { Sidebar } from 'flowbite-react';
-import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from 'react-icons/hi';
+// import { Sidebar } from 'flowbite-react';
+// import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from 'react-icons/hi';
 import useRole from '../../../Hooks/useRole';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const DashboardSidebar = () => {
 
@@ -10,8 +10,8 @@ const DashboardSidebar = () => {
     console.log(role)
 
     return (
-        <div>
-            <Sidebar aria-label="Default sidebar example">
+        <div >
+            {/* <Sidebar aria-label="Default sidebar example">
                 <Sidebar.Items>
                     <Sidebar.ItemGroup>
                         {
@@ -88,7 +88,107 @@ const DashboardSidebar = () => {
                         }
                     </Sidebar.ItemGroup>
                 </Sidebar.Items>
-            </Sidebar>
+            </Sidebar> */}
+            <div className='bg-gray-200 shadow-2xl w-60 rounded-lg flex flex-col justify-center p-4 md:p-8'>
+                {
+                    role && role === 'Organizer' ? <>
+                        <NavLink to='/dashboard/organizer-profile'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                            Profile
+                        </NavLink>
+                        <NavLink to='/dashboard/add-a-camp'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                            Add A Camp
+                        </NavLink>
+                        <NavLink to='/dashboard/manage-camps'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                        
+                            Manage Camps
+                        </NavLink>
+                        <NavLink to='/dashboard/manage-registered-camps'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                        
+                            Manage Registered Camps
+                        </NavLink>
+                        <NavLink to='/dashboard/add-upcoming-camp'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                            Add Upcoming Camp
+                        </NavLink>
+                        <NavLink to='/dashboard/manage-upcoming-camp'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                            Manage Upcoming Camps
+                        </NavLink>
+                    </> : ''
+                }
+                {
+                    role && role === 'Participant' ? <>
+                        <NavLink to='/dashboard/participant-profile'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                            Profile
+                        </NavLink>
+                        <NavLink to='/dashboard/registered-camps'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                            Registered Camps
+                        </NavLink>
+                        <NavLink to='/dashboard/payment-history'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                            Payment History
+                        </NavLink>
+                        <NavLink to='/dashboard/feedback-and-ratings'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                            Feedback and Ratings
+                        </NavLink>
+                    </> : ''
+                }
+                {
+                    role && role === 'HealthcareProfessional' ? <>
+                        <NavLink to='/dashboard/professional-profile'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                            Profile
+                        </NavLink>
+                        <NavLink to='/dashboard/accepted-camps'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-gray-500 text-white font-bold mb-2 p-2 rounded-md shadow-md border" : "mb-2 border p-2 rounded-md border-black"
+                            }
+                        >
+                            Accepted Camps
+                        </NavLink>
+                    </> : ''
+                }
+            </div>
         </div>
     );
 };
