@@ -24,6 +24,7 @@ import AddUpcomingCamp from "../Pages/Dashboard/Organizers/AddUpcomingCamp/AddUp
 import UpcomingCampDetails from "../Pages/UpcomingCampDetails/UpcomingCampDetails";
 import ManageUpcoming from "../Pages/Dashboard/Organizers/ManageUpcoming/ManageUpcoming";
 import UpdateUpcoming from "../Pages/Dashboard/Organizers/UpdateUpcoming/UpdateUpcoming";
+import AcceptedCamps from "../Pages/Dashboard/Professionals/AcceptedCamps/AcceptedCamps";
 
 
 export const router = createBrowserRouter([
@@ -119,6 +120,10 @@ export const router = createBrowserRouter([
               {
                 path: 'feedback-and-ratings',
                 element: <PrivateRoutes><FeedbackRating></FeedbackRating></PrivateRoutes>
+              },
+              {
+                path: 'accepted-camps',
+                element: <PrivateRoutes><AcceptedCamps></AcceptedCamps></PrivateRoutes>
               }
             ]
         }
