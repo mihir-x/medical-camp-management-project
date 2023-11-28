@@ -37,6 +37,7 @@ const UpdateModal = ({ openModal, onCloseModal, userInfo }) => {
                             showConfirmButton: false,
                             timer: 1500
                         });
+                        location.reload()
                         onCloseModal()
                     }
                 })
