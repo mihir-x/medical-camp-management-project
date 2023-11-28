@@ -137,7 +137,7 @@ const tableData = camps?.map((camp) => ({
     professionals: camp.interestedProfessional,
     participants: camp.interestedParticipant,
     publish: <Button onClick={() => handlePublish(camp)} disabled={camp?.interestedParticipant < 2 || camp?.interestedProfessional < 1} outline gradientDuoTone="pinkToOrange">Publish</Button>,
-    update: <Link to={`/dashboard/update-camp/${camp._id}`}><Button outline gradientDuoTone="purpleToBlue">Update</Button></Link>,
+    update: <Link to={`/dashboard/update/upcoming-camp/${camp._id}`}><Button outline gradientDuoTone="purpleToBlue">Update</Button></Link>,
     delete: <Button onClick={() => handleCampDelete(camp._id)} outline gradientDuoTone="pinkToOrange">Delete</Button>,
 }))
 
