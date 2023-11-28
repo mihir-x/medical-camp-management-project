@@ -6,12 +6,20 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Loader from "../../Components/Loader/Loader";
 import { useParams } from "react-router-dom";
+import useUser from "../../Hooks/useUser";
+import useRole from "../../Hooks/useRole";
+import JoinUpcomingModal from "./JoinUpcomingModal";
+import { useState } from "react";
+import InterestedModal from "./InterestedModal";
 
 
 const UpcomingCampDetails = () => {
-
+    const [openJoinModal, setOpenJoinModal] = useState(false)
+    const [openModal, setOpenModal] = useState(false)
     const axiosPublic = useAxiosPublic()
     const { id } = useParams()
+    const [userAccount] = useUser()
+    const [role] = useRole()
 
     const { data, isLoading } = useQuery({
         queryKey: ['upcomingDetails'],
@@ -21,6 +29,13 @@ const UpcomingCampDetails = () => {
         }
     })
     if (isLoading) return <Loader></Loader>
+
+    function onCloseModal() {
+        setOpenModal(false);
+    }
+    function onCloseJoinModal() {
+        setOpenJoinModal(false);
+    }
 
     return (
         <div>
@@ -55,17 +70,16 @@ const UpcomingCampDetails = () => {
                         </div>
                     </div>
                     <div className="flex justify-center gap-5">
-                        <Button outline gradientDuoTone="purpleToBlue">
+                        <Button onClick={() => setOpenJoinModal(true)} disabled={role!== 'Participant'} outline gradientDuoTone="purpleToBlue">
                             Join Upcoming Camp
                         </Button>
-                        <Button outline gradientDuoTone="purpleToBlue">
+                        <Button onClick={() => setOpenModal(true)} disabled={role!=='HealthcareProfessional'} outline gradientDuoTone="purpleToBlue">
                             Interested Upcoming
                         </Button>
-                        {/* <Button onClick={() => setOpenModal(true)} disabled={role !== 'Participant'} outline gradientDuoTone="purpleToBlue">
-                            Join Camp
-                        </Button> */}
+                        
                     </div>
-                    {/* <CampRegisterModal openModal={openModal} onCloseModal={onCloseModal} camp={data} userInfo={userAccount}></CampRegisterModal> */}
+                    <JoinUpcomingModal openJoinModal={openJoinModal} onCloseJoinModal={onCloseJoinModal} camp={data} userInfo={userAccount}></JoinUpcomingModal>
+                    <InterestedModal openModal={openModal} onCloseModal={onCloseModal} camp={data} userInfo={userAccount}></InterestedModal>
                 </Card>
             </Container>
         </div>
