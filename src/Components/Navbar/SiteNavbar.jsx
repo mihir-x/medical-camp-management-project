@@ -35,7 +35,7 @@ const SiteNavbar = () => {
     }
 
     return (
-        <div className=" shadow-2xl">
+        <div className=" shadow-2xl z-50">
             <Navbar fluid rounded>
                 <Navbar.Brand href="">
                     <img src="https://i.ibb.co/Qj6RqFC/logo.jpg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />

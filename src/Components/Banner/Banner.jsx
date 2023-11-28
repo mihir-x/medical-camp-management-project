@@ -21,7 +21,7 @@ const Banner = () => {
             <div className="absolute z-10 h-full w-full bg-black opacity-50"></div>
             <button onClick={handlePrev} className="btn btn-primary z-20 rounded-full absolute left-5 top-[50%]">❮</button>
             <img src={bannerPhoto[current]} alt="" className="-z-20 h-full w-full" />
-            <div className="absolute z-50 top-1/3 left-[15%] md:left-[28%] text-center">
+            <div className="absolute z-30 top-1/3 left-[15%] md:left-[28%] text-center">
                 <h1 className=" text-lg md:text-3xl lg:text-5xl font-bold text-white">Welcome to MediVoyage</h1>
                 <h1 className=" text-base md:text-xl lg:text-3xl font-semibold text-white mt-5">30+ Successful Camps</h1>
                 <h1 className=" text-base md:text-xl lg:text-3xl font-semibold text-white">Served 1000+ Patients</h1>

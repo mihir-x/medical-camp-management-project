@@ -108,11 +108,11 @@ const ParticipantRegisteredCamp = () => {
         cancel: <Button onClick={() => handleCancle(camp?._id)} disabled={camp?.payment === 'Paid'} outline gradientDuoTone="pinkToOrange">Cancel</Button>,
     }))
 
-    const handleOpenModal = (item) =>{
+    const handleOpenModal = (item) => {
         setCampData(item)
         setOpenModal(true)
     }
-    
+
     function onCloseModal() {
         setOpenModal(false);
     }
