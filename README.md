@@ -1,8 +1,16 @@
-# React + Vite
+# MediVoyage
+# Site Link: https://luminous-sherbet-6eb0c1.netlify.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Credentials:
+- Organizer
+- HealthcareProfessional
+- Participant
 
-Currently, two official plugins are available:
+# MediVoyage Website Features:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Organizer can add, delete, update their medical camps and their upcoming medical camps
+- Participant can register for medical camps when they register their initial participation status will be pending
+- Participant can pay for their registered camps
+- Organizer can confirm participation status of a participant after they pay
+- Participant can give feedback and rating to confirmed medical camp
+- Healthcare Professionals and Participant can register for upcoming medical camps
