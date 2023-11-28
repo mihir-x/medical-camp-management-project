@@ -89,7 +89,7 @@ const DashboardSidebar = () => {
                     </Sidebar.ItemGroup>
                 </Sidebar.Items>
             </Sidebar> */}
-            <div className='bg-gray-200 shadow-2xl w-60 rounded-lg flex flex-col justify-center p-4 md:p-8'>
+            <div className='bg-gray-200 h-full shadow-2xl w-60 rounded-lg flex flex-col justify-start p-4 md:p-8'>
                 {
                     role && role === 'Organizer' ? <>
                         <NavLink to='/dashboard/organizer-profile'

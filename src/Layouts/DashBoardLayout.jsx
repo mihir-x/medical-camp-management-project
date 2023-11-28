@@ -10,7 +10,7 @@ const DashBoardLayout = () => {
                 <title>MediVoyage | Dashboard</title>
             </Helmet>
             <DashboardSidebar></DashboardSidebar>
-            <div className='flex-1 p-2'>
+            <div className='flex-1 p-2 min-h-screen'>
                 <Outlet></Outlet>
             </div>
         </div>

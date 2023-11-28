@@ -45,7 +45,7 @@ const ContactUs = () => {
                             Welcome to Medical Camp Management
                         </h5>
                         <p className="font-normal text-gray-700 dark:text-gray-400">
-                            Contact us and be part of an amazing journey. 
+                            Contact us and be for further inquiry. 
                         </p>
                     </div>
                     <div>
