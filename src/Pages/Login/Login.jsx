@@ -1,6 +1,5 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import { Helmet } from "react-helmet-async";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
@@ -63,10 +62,10 @@ const Login = () => {
                     </div>
                     <Button type="submit">Login</Button>
                 </form>
-                <div className=" cursor-pointer p-2 border-2 rounded-lg mt-5 text-center flex justify-center items-center gap-2">
+                {/* <div className=" cursor-pointer p-2 border-2 rounded-lg mt-5 text-center flex justify-center items-center gap-2">
                     <FcGoogle size={24}></FcGoogle>
                     <p>Continue With Google</p>
-                </div>
+                </div> */}
                 <p className=" text-center text-gray-400 mt-4">Don&apos;t have an account? <Link to='/register' className=" text-gray-600 hover:underline hover:text-red-500">Register</Link></p>
             </div>
         </div>

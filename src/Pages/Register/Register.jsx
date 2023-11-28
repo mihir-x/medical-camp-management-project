@@ -1,7 +1,6 @@
 import { Button, FileInput, Label, Select, TextInput } from "flowbite-react";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
-import { FcGoogle } from 'react-icons/fc'
 import { uploadImage } from "../../API/utils";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -107,10 +106,10 @@ const Register = () => {
 
                     <Button type="submit">Register new account</Button>
                 </form>
-                <div className=" cursor-pointer p-2 border-2 rounded-lg mt-5 text-center flex justify-center items-center gap-2">
+                {/* <div className=" cursor-pointer p-2 border-2 rounded-lg mt-5 text-center flex justify-center items-center gap-2">
                     <FcGoogle size={24}></FcGoogle>
                     <p>Continue With Google</p>
-                </div>
+                </div> */}
                 <p className=" text-center text-gray-400 mt-4">Already have an account? <Link to='/login' className=" text-gray-600 hover:underline hover:text-red-500">Login</Link></p>
             </div>
         </div>
