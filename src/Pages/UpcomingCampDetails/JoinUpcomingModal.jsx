@@ -1,13 +1,67 @@
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import PropTypes from 'prop-types'
+import Swal from "sweetalert2";
+import axiosSecure from "../../API";
 
-const JoinUpcomingModal = ({openJoinModal, onCloseJoinModal, camp, userInfo}) => {
+const JoinUpcomingModal = ({ openJoinModal, onCloseJoinModal, camp, userInfo }) => {
+
+    const handleCampJoin = async (e) => {
+        e.preventDefault()
+        const form = e.target
+        const name = form.name.value
+        const phone = form.phone.value
+        const address = form.address.value
+        const age = form.age.value
+        const gender = form.gender.value
+        const fee = form.fee.value
+        const requirements = form.requirements.value
+
+        const registeredCamp = {
+            name,
+            phone,
+            address,
+            age,
+            gender,
+            fee: parseInt(fee),
+            requirements,
+            participant: userInfo?.email,
+            campId: camp?._id,
+            campName: camp?.name,
+            campDate: camp?.date,
+            campTime: camp?.time,
+            campVenue: camp?.venue,
+            organizer: camp?.organizer,
+            approval: 'Pending',
+        }
+        try {
+            const res = await axiosSecure.put('/upcoming/interested/participant', registeredCamp)
+            if (res?.data?.insertedId) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `Your interest in this upcoming camp is recorded`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                onCloseJoinModal()
+            }
+        }
+        catch (err) {
+            Swal.fire({
+                icon: "error",
+                title: "Already Registered",
+                text: err.message
+            })
+            onCloseJoinModal()
+        }
+    }
+
     return (
         <Modal show={openJoinModal} size="md" onClose={onCloseJoinModal} popup>
             <Modal.Header />
             <Modal.Body>
-                <form  className="flex max-w-md flex-col gap-4">
-                    Join Modal
+                <form onSubmit={handleCampJoin} className="flex max-w-md flex-col gap-4">
+
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="name" value="Your name" />
