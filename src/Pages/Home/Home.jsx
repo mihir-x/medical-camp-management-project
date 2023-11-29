@@ -4,6 +4,7 @@ import PopularCamps from "../../Components/PopularCamps/PopularCamps";
 import Testimonials from "../../Components/Testimonials/Testimonials";
 import UpcomingSection from "../../Components/Upcoming/UpcomingSection";
 import Faq from "../../Components/Faq/Faq";
+import TopOrganizer from "../../Components/TopOrganizer/TopOrganizer";
 
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
             <PopularCamps></PopularCamps>
             <Testimonials></Testimonials>
             <UpcomingSection></UpcomingSection>
+            <TopOrganizer></TopOrganizer>
             <Faq></Faq>
         </div>
     );

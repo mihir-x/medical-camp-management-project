@@ -9,8 +9,6 @@ const OrganizerProfile = () => {
     const [openModal, setOpenModal] = useState(false);
     const [userAccount, isLoading] = useUser()
 
-
-
     if (isLoading) return <Loader></Loader>
     console.log(userAccount)
 
