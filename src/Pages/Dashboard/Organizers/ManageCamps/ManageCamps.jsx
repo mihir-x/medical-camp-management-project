@@ -61,10 +61,10 @@ const ManageCamps = () => {
             name: 'Name',
             selector: row => row.title,
         },
-        {
-            name: 'Venue',
-            selector: row => row.venue,
-        },
+        // {
+        //     name: 'Venue',
+        //     selector: row => row.venue,
+        // },
         {
             name: 'Services',
             selector: row => row.services,
@@ -73,10 +73,10 @@ const ManageCamps = () => {
             name: 'Professionals',
             selector: row => row.professionals,
         },
-        {
-            name: 'Date',
-            selector: row => row.date,
-        },
+        // {
+        //     name: 'Date',
+        //     selector: row => row.date,
+        // },
         {
             name: 'Update',
             selector: row => row.update,
@@ -89,16 +89,16 @@ const ManageCamps = () => {
 
     const tableData = camps?.map((camp) => ({
         title: camp.name,
-        venue: camp.venue,
+        // venue: camp.venue,
         services: camp.services,
         professionals: camp.professionals,
-        date: camp.date,
+        // date: camp.date,
         update: <Link to={`/dashboard/update-camp/${camp._id}`}><Button outline gradientDuoTone="purpleToBlue">Update</Button></Link> ,
         delete: <Button onClick={() => handleCampDelete(camp._id)} outline gradientDuoTone="pinkToOrange">Delete</Button>,
     }))
 
     return (
-        <div className="mb-5 md:mb-8 lg:mb-16">
+        <div className="mb-5 md:mb-8 lg:mb-16 overflow-x-auto">
             <Helmet>
                 <title>MediVoyage | Manage Camps</title>
             </Helmet>

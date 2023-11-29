@@ -39,7 +39,7 @@ const AddCamp = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `A New Camp Added Successfully`,
+                        title: `A New Medical Camp Added Successfully`,
                         showConfirmButton: false,
                         timer: 1500
                     });

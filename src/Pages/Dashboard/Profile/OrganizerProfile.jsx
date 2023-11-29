@@ -7,9 +7,10 @@ import UpdateModal from "../../../Components/UpdateModal/UpdateModal";
 
 const OrganizerProfile = () => {
     const [openModal, setOpenModal] = useState(false);
-
-    // const { user, loading } = useAuth()
     const [userAccount, isLoading] = useUser()
+
+
+
     if (isLoading) return <Loader></Loader>
     console.log(userAccount)
 

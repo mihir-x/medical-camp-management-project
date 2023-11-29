@@ -22,6 +22,7 @@ const FeedBackModal = ({ openModal, onCloseModal, campData }) => {
                 campName: campData?.campName,
                 date: campData?.campDate,
                 name: campData?.name,
+                organizer: campData?.organizer,
                 reviewDate: Date.now()
             }
             const reviewResult = await axiosSecure.post('/review', reviewInfo)

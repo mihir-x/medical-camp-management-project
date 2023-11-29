@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 const DashBoardLayout = () => {
     return (
-        <div className='md:flex my-5'>
+        <div className='md:flex my-5 overflow-x-auto'>
             <Helmet>
                 <title>MediVoyage | Dashboard</title>
             </Helmet>
