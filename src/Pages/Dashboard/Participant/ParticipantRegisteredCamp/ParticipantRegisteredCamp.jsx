@@ -75,10 +75,10 @@ const ParticipantRegisteredCamp = () => {
             name: 'Date',
             selector: row => row.date,
         },
-        {
-            name: 'Time',
-            selector: row => row.time,
-        },
+        // {
+        //     name: 'Time',
+        //     selector: row => row.time,
+        // },
         {
             name: 'Fee',
             selector: row => row.fee,
@@ -101,7 +101,7 @@ const ParticipantRegisteredCamp = () => {
         title: camp?.campName,
         venue: camp?.campVenue,
         date: camp?.campDate,
-        time: camp?.campTime,
+        // time: camp?.campTime,
         fee: camp?.fee,
         payment: <Button onClick={() => handleOpenModal(camp)} disabled={camp?.payment === 'Paid'} outline gradientDuoTone="pinkToOrange">{camp?.payment === 'Unpaid' ? 'Pay' : 'Paid'}</Button>,
         approval: camp?.approval,

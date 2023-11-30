@@ -39,10 +39,10 @@ const FeedbackRating = () => {
             name: 'Date',
             selector: row => row.date,
         },
-        {
-            name: 'Time',
-            selector: row => row.time,
-        },
+        // {
+        //     name: 'Time',
+        //     selector: row => row.time,
+        // },
         {
             name: 'Fee',
             selector: row => row.fee,
@@ -65,7 +65,7 @@ const FeedbackRating = () => {
         title: camp?.campName,
         venue: camp?.campVenue,
         date: camp?.campDate,
-        time: camp?.campTime,
+        // time: camp?.campTime,
         fee: camp?.fee,
         payment: camp?.payment,
         approval: camp?.approval,
