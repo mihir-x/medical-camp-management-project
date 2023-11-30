@@ -3,6 +3,7 @@ import Loader from "../../../Components/Loader/Loader";
 import useUser from "../../../Hooks/useUser";
 import { Card } from "flowbite-react";
 import UpdateModal from "../../../Components/UpdateModal/UpdateModal";
+import { Helmet } from "react-helmet-async";
 
 
 const ProfessionalProfile = () => {
@@ -16,6 +17,7 @@ const ProfessionalProfile = () => {
 
     return (
         <div>
+            <Helmet><title>MediVoyage | Profile</title></Helmet>
             <Card className="max-w-2xl mx-auto">
 
                 <div className="flex flex-col items-center pb-10">

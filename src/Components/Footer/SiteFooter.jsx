@@ -12,7 +12,7 @@ const SiteFooter = () => {
                             <Footer.Title title="Site Links" />
                             <Footer.LinkGroup col>
                                 <Link to='/'>Home</Link>
-                                <Link to='/available-camps'>Available Camps</Link>
+                                <Link to='/dashboard'>Dashboard</Link>
                             </Footer.LinkGroup>
                         </div>
                         <div>
