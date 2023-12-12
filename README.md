@@ -32,3 +32,8 @@
 - Organizer can confirm participation status of a participant after their successful payment
 - Participant can give feedback and rating to confirmed medical camp
 - Healthcare Professionals and Participant can register for upcoming medical camps
+
+# Newly Added Feature
+
+- In contact us page user can send email to the owner of the website
+- In home page a latest camp section is added. Clicking on the checkout our latest camp button or on the link will take the user to the latest camp details page
