@@ -22,7 +22,7 @@ const ContactUs = () => {
             const res = await axiosPublic.post('/send-mail', mailObject)
             if (res.data.status === 200) {
                 Swal.fire({
-                    title: `Welcome ${name}. We will reach you shortly`,
+                    title: `Thank You. We will reach you shortly`,
                     showClass: {
                         popup: `
                         animate__animated

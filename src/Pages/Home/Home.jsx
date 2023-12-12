@@ -5,6 +5,7 @@ import Testimonials from "../../Components/Testimonials/Testimonials";
 import UpcomingSection from "../../Components/Upcoming/UpcomingSection";
 import Faq from "../../Components/Faq/Faq";
 import TopOrganizer from "../../Components/TopOrganizer/TopOrganizer";
+import LatestCamp from "./LatestCamp";
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
                 <title>MediVoyage | Home</title>
             </Helmet>
             <Banner></Banner>
+            <LatestCamp></LatestCamp>
             <PopularCamps></PopularCamps>
             <Testimonials></Testimonials>
             <UpcomingSection></UpcomingSection>
